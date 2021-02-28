@@ -1,6 +1,8 @@
 package com.dedo.devproj;
 
+import org.springframework.context.annotation.Configuration;
 import org.testcontainers.containers.PostgreSQLContainer;
+
 
 public class NermPostgresqlContainer extends PostgreSQLContainer<NermPostgresqlContainer> {
     private static String IMAGE_VERSION = "postgres:latest";

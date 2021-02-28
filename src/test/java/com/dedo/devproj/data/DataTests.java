@@ -7,26 +7,18 @@ import com.dedo.devproj.data.entity.Product;
 import com.dedo.devproj.data.repository.CartRepository;
 import com.dedo.devproj.data.repository.CustomerRepository;
 import com.dedo.devproj.data.repository.ProductRepository;
-import com.fasterxml.jackson.databind.annotation.JsonTypeResolver;
+
 
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.ClassRule;
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.jupiter.api.Assertions;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-import javax.persistence.EntityManager;
-
 import java.util.HashSet;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
