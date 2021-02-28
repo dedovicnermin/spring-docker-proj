@@ -16,10 +16,6 @@ public class Cart {
     @Column(name = "CART_ID")
     private long cartId;
 
-
-//    @Column(name = "CART_CUSTOMER")
-//    private Customer cartCustomer;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "CART_PRODUCT",
             joinColumns = {@JoinColumn(name = "fk_cart") },

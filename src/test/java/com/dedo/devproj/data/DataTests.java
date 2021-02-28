@@ -3,6 +3,7 @@ package com.dedo.devproj.data;
 import com.dedo.devproj.NermPostgresqlContainer;
 import com.dedo.devproj.data.entity.Cart;
 import com.dedo.devproj.data.entity.Customer;
+import com.dedo.devproj.data.entity.Product;
 import com.dedo.devproj.data.repository.CartRepository;
 import com.dedo.devproj.data.repository.CustomerRepository;
 import com.dedo.devproj.data.repository.ProductRepository;
@@ -27,8 +28,7 @@ import javax.persistence.EntityManager;
 import java.util.HashSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @DisplayName("--- Customer Table Testing ---")
@@ -98,6 +98,41 @@ public class DataTests {
 
         Assertions.assertEquals(customerRepository.findById(customerId).get().getCustomerCart(), cart1, () -> "The customer from the cutomerRepo should return the same cart.");
     }
+
+    @Test
+    void cartWillReturnEmptySetTest() {
+        Cart cart = new Cart();
+        assertTrue(cart.getProductSet().isEmpty());
+    }
+
+    @Test
+    void cartProductsWillCorrectlyMap() {
+        Product product1 = new Product();
+        product1.setProductName("FUNKO - Naruto Uzumaki");
+        product1.setProductPrice(19.99);
+        productRepository.saveAndFlush(product1);
+
+        Product product2 = new Product();
+        product2.setProductName("FUNKO - Hinata Uzumaki");
+        product2.setProductPrice(9.99);
+        productRepository.saveAndFlush(product2);
+
+
+        HashSet<Product> set = new HashSet<>();
+        set.add(product1);
+        set.add(product2);
+
+        Cart cart = new Cart();
+        cart.getProductSet().add(product1);
+        cart.getProductSet().add(product2);
+        cartRepository.saveAndFlush(cart);
+
+        assertTrue(cartRepository.findById(cart.getCartId()).get().getProductSet().equals(set));
+
+    }
+
+
+
 
 
 
