@@ -11,13 +11,14 @@ import javax.persistence.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long customer_id;
+    private long customerId;
 
     @Column(name = "CUSTOMER_NAME", nullable = false)
-    private String customer_name;
+    private String customerName;
 
-    @Column(name = "CUSTOMER_CART")
-    private long customer_cart;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_cart")
+    private Cart customerCart;
 
 
 
