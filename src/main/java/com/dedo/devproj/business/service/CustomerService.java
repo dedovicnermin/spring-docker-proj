@@ -83,6 +83,20 @@ public class CustomerService {
     }
 
 
+    public String addProduct(String productName, double productPrice) {
+
+        Product product = new Product();
+        product.setProductName(productName);
+        product.setProductPrice(productPrice);
+        productRepository.saveAndFlush(product);
+
+        return "Successfully added product: " + productName + "for $" + productPrice;
+
+    }
+
+
+
+
 
 
 

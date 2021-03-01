@@ -1,5 +1,6 @@
 package com.dedo.devproj;
 
+import com.dedo.devproj.business.service.CustomerService;
 import com.dedo.devproj.data.entity.Customer;
 import com.dedo.devproj.data.repository.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,22 +21,21 @@ import java.util.List;
 public class DevprojApplication {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private CustomerService service;
+
 
 	@EventListener(ApplicationReadyEvent.class)
 	public void runAfterStartup() {
-		List<Customer> allCustomers = this.customerRepository.findAll();
-		log.info("Number of CUSTYS: " + allCustomers.size());
+		service.createCustomer("Naruto Uzumaki");
+		service.createCustomer("Sasuke Uciha");
+		service.createCustomer("Madara Uchiha");
 
-//		Customer customer = new Customer();
-//		customer.setCustomer_name("Naruto Uzumaki");
-//		customer.setCustomer_cart(600);
-//
-//		log.info("...saving...");
-//		this.customerRepository.save(customer);
-//
-//		allCustomers = customerRepository.findAll();
-//		log.info("Number of CUSTYS NOW: " + allCustomers.size());
+		service.addProduct("FUNKO - Hinata", 5.99);
+		service.addProduct("FUNKO - Jiraya", 150.00);
+		service.addProduct("FUNKO - TSUNADE", 8.34);
+
+		log.info("Added 3 customers/products");
+
 	}
 
 	public static void main(String[] args) {
