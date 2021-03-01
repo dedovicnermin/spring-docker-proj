@@ -27,7 +27,7 @@ public class CustomerController {
         return customerService.createCustomer(name);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Customer> getCustomers() {
         return customerService.getAllCustomers();
     }
